@@ -9,7 +9,7 @@
     "database": "instream",
     "database_user": "InStream-API-User",
     "database_password": "17IPHZFt6dJKHkdX",
-    "MONGODB_URI": "mongodb+srv://northern-web.wlocq.gcp.mongodb.net/instream"
+    "MONGODB_URI": "mongodb+srv://InStream-API-User:17IPHZFt6dJKHkdX@northern-web.wlocq.gcp.mongodb.net/instream?retryWrites=true"
   },
   "production": {
     "config_id": "production",
@@ -17,6 +17,6 @@
     "database": "instream",
     "database_user": "InStream-API-User",
     "database_password": "17IPHZFt6dJKHkdX",
-    "MONGODB_URI": "mongodb+srv://northern-web.wlocq.gcp.mongodb.net/instream"
+    "MONGODB_URI": "mongodb+srv://InStream-API-User:17IPHZFt6dJKHkdX@northern-web.wlocq.gcp.mongodb.net/instream?retryWrites=true"
   }
 }
