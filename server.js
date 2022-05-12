@@ -8,8 +8,10 @@ const app = express();
 app.use(express.json());
 
 // Router Requirements
+const stockRoutes = require("./routes/stock.routes");
 
 // Router Uses
+app.use("/stocks", stockRoutes);
 
 
 app.listen(process.env.PORT || 3000, () => {
