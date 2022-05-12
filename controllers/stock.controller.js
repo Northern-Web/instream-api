@@ -1,5 +1,5 @@
 const { Stock } = require("./../models/stock.model");
-const config    = require('./config/config.js');
+const config    = require('./../config/config.js');
 
 exports.create = async (req, res, next) => {
   const data = req.body;
