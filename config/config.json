@@ -1,0 +1,22 @@
+{
+  "development": {
+    "config_id": "development",
+    "app_name": "InStream",
+    "app_desc": "InStream API",
+    "app_ver": "1.0.0",
+    "node_port": 3000,
+    "json_indentation": 4,
+    "database": "instream",
+    "database_user": "InStream-API-User",
+    "database_password": "17IPHZFt6dJKHkdX",
+    "MONGODB_URI": "mongodb+srv://northern-web.wlocq.gcp.mongodb.net/instream"
+  },
+  "production": {
+    "config_id": "production",
+    "node_port": 3000,
+    "database": "instream",
+    "database_user": "InStream-API-User",
+    "database_password": "17IPHZFt6dJKHkdX",
+    "MONGODB_URI": "mongodb+srv://northern-web.wlocq.gcp.mongodb.net/instream"
+  }
+}
