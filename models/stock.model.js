@@ -11,6 +11,7 @@ var StockSchema = new mongoose.Schema({
     type:     String,
     required: true,
     trim:     true,
+    dropDups: true
   },
   companyInfo: {
     industry: {
@@ -26,6 +27,17 @@ var StockSchema = new mongoose.Schema({
     logo: {
       type: String,
       trim: true
+    },
+    website: {
+      type: String,
+      trim: true
+    }
+  },
+  financial: {
+    currency: {
+      type:     String,
+      required: true,
+      trim:     true
     }
   },
   isActive: {
