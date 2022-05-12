@@ -10,6 +10,8 @@ exports.create = async (req, res, next) => {
     "companyInfo.industry":   data.industry,
     "companyInfo.identifier": data.identifier,
     "companyInfo.logo":       data.logo,
+    "companyInfo.website":    data.website,
+    "financial.currency":     data.currency,
     "isActive":               true
 
   });
@@ -55,6 +57,10 @@ exports.get = async (req, res, next) => {
 
   if (req.query.identifier) {
     query["companyInfo.identifier"] = req.query.identifier;
+  }
+
+  if (req.query.currency) {
+    query["financial.currency"] = req.query.currency;
   }
 
   Stock.find(query)
