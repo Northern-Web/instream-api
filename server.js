@@ -1,17 +1,25 @@
 const express  = require('express');
 const mongoose = require('mongoose');
+const cors     = require('cors');
 const config   = require('./config/config.js');
 
 const app = express();
 
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
+
 // App Uses
 app.use(express.json());
+app.use(cors(corsOptions));
 
 // Router Requirements
+const authRoutes  = require("./routes/auth.routes");
 const stockRoutes = require("./routes/stock.routes");
 
 // Router Uses
-app.use("/stocks", stockRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/stocks", stockRoutes);
 
 
 app.listen(process.env.PORT || 3000, () => {
