@@ -14,12 +14,14 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 // Router Requirements
-const authRoutes  = require("./routes/auth.routes");
-const stockRoutes = require("./routes/stock.routes");
+const authRoutes     = require("./routes/auth.routes");
+const stockRoutes    = require("./routes/stock.routes");
+const dividendRoutes = require("./routes/dividend.routes");
 
 // Router Uses
 app.use("/api/auth", authRoutes);
 app.use("/api/stocks", stockRoutes);
+app.use("/api/dividends", dividendRoutes);
 
 
 app.listen(process.env.PORT || 3000, () => {
