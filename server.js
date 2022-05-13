@@ -17,11 +17,13 @@ app.use(cors(corsOptions));
 const authRoutes     = require("./routes/auth.routes");
 const stockRoutes    = require("./routes/stock.routes");
 const dividendRoutes = require("./routes/dividend.routes");
+const loanRoutes     = require("./routes/loan.routes");
 
 // Router Uses
 app.use("/api/auth", authRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use("/api/dividends", dividendRoutes);
+app.use("/api/loans", loanRoutes);
 
 
 app.listen(process.env.PORT || 3000, () => {
