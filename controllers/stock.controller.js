@@ -26,6 +26,34 @@ exports.create = async (req, res, next) => {
   });
 };
 
+exports.delete = async (req, res, next) => {
+  const id = req.params.id;
+
+  const stock = await Stock.findById(id);
+  stock.delete(() => {
+    return res.status(200).json({
+      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "code": 200,
+      "status": "Success",
+      "message": "Stock was successfully deleted."
+    });
+  });
+};
+
+exports.patch = async (req, res, next) => {
+  const id   = req.params.id;
+  const data = req.body;
+
+  Stock.findOneAndUpdate({ _id: id }, data).then(() => {
+    return res.status(200).json({
+      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "code": 200,
+      "status": "Success",
+      "message": "Stock was successfully updated."
+    });
+  });
+};
+
 exports.get = async (req, res, next) => {
   var options = {};
   var query   = {};
