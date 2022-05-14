@@ -6,7 +6,10 @@ const config   = require('./config/config.js');
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  //origin: "http://localhost:8081"
+  origin:'*',
+  credentials:true,
+  optionSuccessStatus:200
 };
 
 // App Uses
