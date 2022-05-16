@@ -21,7 +21,7 @@ var LoanSchema = new mongoose.Schema({
     trim:     true,
     required: true
   },
-  amount: {
+  principal_amount: {
     type:     Number,
     required: true
   },
@@ -41,7 +41,19 @@ var LoanSchema = new mongoose.Schema({
     type:     String,
     required: true,
     trim:     true
-  }
+  },
+  installments: [{
+    payment_type: {
+      type: String,
+      trim: true
+    },
+    amount: {
+      type: Number
+    },
+    payment_date: {
+      type: Date
+    }
+  }],
   isActive: {
     type:     Boolean,
     required: true,
