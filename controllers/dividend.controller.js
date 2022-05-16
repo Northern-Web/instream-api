@@ -87,6 +87,13 @@ exports.find = async (req, res, next) => {
     query["currency"] = req.query.currency;
   }
 
+  if (req.query.year) {
+    query["payment_date"] = {
+      $gte: new Date(req.query.year, 1, 1),
+      $lte: new Date(req.query.year, 12, 31)
+    };
+  }
+
     // Ensures that the API only provides dividend data to the certain user.
     query["owner"] = decoded_token.id;
 
