@@ -31,6 +31,10 @@ var UserSchema = new mongoose.Schema({
     dividendsPerMonth: {
       type: Number,
       default: 0
+    },
+    annualSalary: {
+      type: Number,
+      default: 0
     }
   },
   lastLogin: {
