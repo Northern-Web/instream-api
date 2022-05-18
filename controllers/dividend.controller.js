@@ -89,8 +89,8 @@ exports.find = async (req, res, next) => {
 
   if (req.query.year) {
     query["payment_date"] = {
-      $gte: new Date(req.query.year, 1, 1),
-      $lte: new Date(req.query.year, 12, 31)
+      $gte: `${req.query.year}-01-01`,
+      $lte: `${req.query.year}-12-31`
     };
   }
 
