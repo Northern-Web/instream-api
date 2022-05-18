@@ -27,6 +27,12 @@ var UserSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  settings: {
+    dividendsPerMonth: {
+      type: Number,
+      default: 0
+    }
+  },
   lastLogin: {
     type: Date
   },
