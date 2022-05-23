@@ -42,18 +42,6 @@ var LoanSchema = new mongoose.Schema({
     required: true,
     trim:     true
   },
-  installments: [{
-    payment_type: {
-      type: String,
-      trim: true
-    },
-    amount: {
-      type: Number
-    },
-    payment_date: {
-      type: Date
-    }
-  }],
   isActive: {
     type:     Boolean,
     required: true,
