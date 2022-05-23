@@ -17,17 +17,19 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 // Router Requirements
-const authRoutes     = require("./routes/auth.routes");
-const stockRoutes    = require("./routes/stock.routes");
-const dividendRoutes = require("./routes/dividend.routes");
-const loanRoutes     = require("./routes/loan.routes");
-const userRoutes     = require("./routes/user.routes");
+const authRoutes        = require("./routes/auth.routes");
+const stockRoutes       = require("./routes/stock.routes");
+const dividendRoutes    = require("./routes/dividend.routes");
+const loanRoutes        = require("./routes/loan.routes");
+const loanPaymentRoutes = require("./routes/loanPayment.routes");
+const userRoutes        = require("./routes/user.routes");
 
 // Router Uses
 app.use("/api/auth", authRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use("/api/dividends", dividendRoutes);
 app.use("/api/loans", loanRoutes);
+app.use("/api/loanPayments", loanPaymentRoutes);
 app.use("/api/users", userRoutes);
 
 
