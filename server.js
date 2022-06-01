@@ -5,16 +5,16 @@ const config   = require('./config/config.js');
 
 const app = express();
 
-var corsOptions = {
+/*var corsOptions = {
   //origin: "http://localhost:8081"
   origin:'*',
   credentials:true,
   optionSuccessStatus:200
-};
+};*/
 
 // App Uses
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Router Requirements
 const authRoutes        = require("./routes/auth.routes");
