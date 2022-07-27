@@ -91,6 +91,10 @@ exports.find = async (req, res, next) => {
     query["debtor"] = req.query.debtor;
   }
 
+  if (req.query.isActive) {
+    query["isActive"] = req.query.isActive;
+  }
+
     // Ensures that the API only provides dividend data to the certain user.
     query["owner"] = decoded_token.id;
 
