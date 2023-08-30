@@ -5,7 +5,7 @@ exports.create = async (req, res, next) => {
   const data = req.body;
 
   const encoded_token = req.headers["x-access-token"];
-  var decoded_token   = jwt.verify(encoded_token, global.gConfig.jwt_secret);
+  var decoded_token   = jwt.verify(encoded_token, process.env.JWT_SECRET);
 
   var month = data.month;
   var year  = data.year;
@@ -65,7 +65,7 @@ exports.find = async (req, res, next) => {
   options.skip  = parseInt(req.query.skip)  || 0;
 
   const encoded_token = req.headers["x-access-token"];
-  var decoded_token   = jwt.verify(encoded_token, global.gConfig.jwt_secret);
+  var decoded_token   = jwt.verify(encoded_token, process.env.JWT_SECRET);
 
   if (req.query.orderBy) {
     options.sort = req.query.orderBy;
