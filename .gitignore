@@ -3,6 +3,7 @@
 
 # Config files
 /config/config.json
+.env
 
 # IDEs and editors
 /.idea
