@@ -2,6 +2,7 @@ const express  = require('express');
 const mongoose = require('mongoose');
 const cors     = require('cors');
 const config   = require('./config/config.js');
+require('dotenv').config();
 
 const app = express();
 
@@ -37,13 +38,13 @@ app.use("/api/portfolioValues", portfolioValueRoutes);
 
 app.listen(process.env.PORT || 3000, () => {
   mongoose.connect(
-    global.gConfig.MONGODB_URI,
+    process.env.DB_URI,
     {
       useNewUrlParser:    true,
       useUnifiedTopology: true
     }
   );
-  console.log(`${global.gConfig.app_desc} booting in \"${global.gConfig.config_id}\" mode...`);
-  console.log(`Successful connection to database \"${global.gConfig.database}\".`);
-  console.log(`${global.gConfig.app_name} listening on port ${global.gConfig.node_port}`);
+  console.log(`InStream API booting in \"${process.env.MODE}\" mode...`);
+  console.log(`Successful connection to database \"${process.env.DB_NAME}\".`);
+  console.log(`InStream API listening on port ${process.env.PORT}`);
 });
