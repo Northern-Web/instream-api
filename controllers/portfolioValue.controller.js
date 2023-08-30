@@ -1,6 +1,5 @@
 const { PortfolioValue } = require("./../models/portfolioValue.model");
 const jwt          = require("jsonwebtoken");
-const config       = require('./../config/config.js');
 
 exports.create = async (req, res, next) => {
   const data = req.body;
@@ -22,7 +21,7 @@ exports.create = async (req, res, next) => {
 
   portfolioValue.save().then(async () => {
     return res.status(201).json({
-      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
       "code": 201,
       "status": "Success",
       "message": "Portfolio Value was successfully registered."
@@ -36,7 +35,7 @@ exports.delete = async (req, res, next) => {
   const portfolioValue = await PortfolioValue.findById(id);
   dividend.delete(() => {
     return res.status(200).json({
-      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
       "code": 200,
       "status": "Success",
       "message": "Portfolio Value was successfully deleted."
@@ -50,7 +49,7 @@ exports.patch = async (req, res, next) => {
 
   PortfolioValue.findOneAndUpdate({ _id: id }, data).then(() => {
     return res.status(200).json({
-      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
       "code": 200,
       "status": "Success",
       "message": "Portfolio Value was successfully updated."
@@ -100,14 +99,14 @@ exports.find = async (req, res, next) => {
     if (err) {
       console.log(err);
       return res.status(500).json({
-        "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
         "code": 500,
         "status": "Server Error",
         "message": "A problem occured when fetching portfolio values."
       });
     } else {
       return res.status(200).json({
-        "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
         "code": 200,
         "status": "Success",
         "filters": options,

@@ -1,4 +1,3 @@
-const config = require("./../config/config.js");
 const {User}   = require("./../models/user.model");
 var jwt      = require("jsonwebtoken");
 var bcrypt   = require("bcryptjs");
@@ -16,7 +15,7 @@ exports.signup = (req, res) => {
   user.save((err, user) => {
     if (err) {
       return res.status(500).json({
-        "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
         "code": 500,
         "status": "Error",
         "message": err
@@ -24,7 +23,7 @@ exports.signup = (req, res) => {
     }
 
     return res.status(201).json({
-      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
       "code": 201,
       "status": "Success",
       "message": "User was registered successfully!"
@@ -39,7 +38,7 @@ exports.signin = (req, res) => {
   .exec((err, user) => {
     if (err) {
       return res.status(500).json({
-        "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
         "code": 500,
         "status": "Error",
         "message": err
@@ -48,7 +47,7 @@ exports.signin = (req, res) => {
 
     if (!user) {
       return res.status(404).json({
-        "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
         "code": 404,
         "status": "Error",
         "message": "User not found."
@@ -62,7 +61,7 @@ exports.signin = (req, res) => {
 
     if (!passwordIsValid) {
       return res.status(401).json({
-        "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
         "code": 401,
         "status": "Error",
         "accessToken": null,
@@ -76,7 +75,7 @@ exports.signin = (req, res) => {
     });
 
     return res.status(200).json({
-      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
       "code": 200,
       "status": "Success",
       "accessToken": token,

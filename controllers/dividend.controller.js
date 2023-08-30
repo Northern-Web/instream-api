@@ -1,6 +1,5 @@
 const { Dividend } = require("./../models/dividend.model");
 const jwt          = require("jsonwebtoken");
-const config       = require('./../config/config.js');
 
 exports.create = async (req, res, next) => {
   const data = req.body;
@@ -23,7 +22,7 @@ exports.create = async (req, res, next) => {
 
   dividend.save().then(async () => {
     return res.status(201).json({
-    "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+    "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
     "code": 201,
     "status": "Success",
     "message": "Dividend was successfully registered."
@@ -37,7 +36,7 @@ exports.delete = async (req, res, next) => {
   const dividend = await Dividend.findById(id);
   dividend.delete(() => {
     return res.status(200).json({
-      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
       "code": 200,
       "status": "Success",
       "message": "Dividend was successfully deleted."
@@ -51,7 +50,7 @@ exports.patch = async (req, res, next) => {
 
   Dividend.findOneAndUpdate({ _id: id }, data).then(() => {
     return res.status(200).json({
-      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
       "code": 200,
       "status": "Success",
       "message": "Dividend was successfully updated."
@@ -104,14 +103,14 @@ exports.find = async (req, res, next) => {
     if (err) {
       console.log(err);
       return res.status(500).json({
-        "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
         "code": 500,
         "status": "Server Error",
         "message": "A problem occured when fetching dividends."
       });
     } else {
       return res.status(200).json({
-        "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
         "code": 200,
         "status": "Success",
         "filters": options,

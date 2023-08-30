@@ -1,6 +1,5 @@
 const { Loan } = require("./../models/loan.model");
 const jwt      = require("jsonwebtoken");
-const config   = require('./../config/config.js');
 
 exports.create = async (req, res, next) => {
   const data = req.body;
@@ -23,7 +22,7 @@ exports.create = async (req, res, next) => {
 
   loan.save().then(async () => {
     return res.status(201).json({
-    "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+    "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
     "code": 201,
     "status": "Success",
     "message": "Loan was successfully created."
@@ -37,7 +36,7 @@ exports.delete = async (req, res, next) => {
   const loan = await Loan.findById(id);
   loan.delete(() => {
     return res.status(200).json({
-      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
       "code": 200,
       "status": "Success",
       "message": "Loan was successfully deleted."
@@ -51,7 +50,7 @@ exports.patch = async (req, res, next) => {
 
   Loan.findOneAndUpdate({ _id: id }, data).then(() => {
     return res.status(200).json({
-      "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
       "code": 200,
       "status": "Success",
       "message": "Loan was successfully updated."
@@ -105,14 +104,14 @@ exports.find = async (req, res, next) => {
     if (err) {
       console.log(err);
       return res.status(500).json({
-        "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
         "code": 500,
         "status": "Server Error",
         "message": "A problem occured when fetching loans."
       });
     } else {
       return res.status(200).json({
-        "api": `${global.gConfig.app_desc} v.${global.gConfig.app_ver}`,
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
         "code": 200,
         "status": "Success",
         "filters": options,
