@@ -5,16 +5,22 @@ require('dotenv').config();
 
 const app = express();
 
-/*var corsOptions = {
-  //origin: "http://localhost:8081"
-  origin:'*',
+var corsWhitelist = ['http://localhost:8081', 'http://pbqptgufs3ofey9k.prev.site/', 'http://sagnes.no']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (corsWhitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
   credentials:true,
   optionSuccessStatus:200
-};*/
+};
 
 // App Uses
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Router Requirements
 const authRoutes           = require("./routes/auth.routes");
