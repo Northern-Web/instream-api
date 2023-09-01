@@ -15,6 +15,7 @@ var corsOptions = {
   ],
   allowedHeaders: [
     'Content-Type',
+    'x-access-token'
   ]
 };
 
