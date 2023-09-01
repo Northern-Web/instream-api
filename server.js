@@ -5,15 +5,17 @@ require('dotenv').config();
 
 const app = express();
 
-var corsWhitelist = ['http://localhost:8081', 'http://pbqptgufs3ofey9k.prev.site/', 'http://sagnes.no']
 var corsOptions = {
-  origin: function (origin, callback) {
-    if (corsWhitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
+  origin: '*',
+  methods: [
+    'GET',
+    'POST',
+    'PATCH',
+    'DELETE'
+  ],
+  allowedHeaders: [
+    'Content-Type',
+  ]
 };
 
 // App Uses
