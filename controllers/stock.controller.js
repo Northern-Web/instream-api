@@ -97,6 +97,10 @@ exports.get = async (req, res, next) => {
     query["financial.isExempt"] = req.query.exempt;
   }
 
+  if (req.query.active) {
+    query["isActive"] = req.query.active;
+  }
+
   Stock.find(query)
   .setOptions(options)
   .exec(function (err, stocks) {
