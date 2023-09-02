@@ -3,6 +3,8 @@ const { Stock } = require("./../models/stock.model");
 exports.create = async (req, res, next) => {
   const data = req.body;
 
+  console.log(data.exempt);
+
   var stock = new Stock ({
     "name":                   data.name,
     "ticker":                 data.ticker,
@@ -11,6 +13,7 @@ exports.create = async (req, res, next) => {
     "companyInfo.logo":       data.logo,
     "companyInfo.website":    data.website,
     "financial.currency":     data.currency,
+    "financial.isExempt":     (data.exempt == 'Yes' ? true : false),
     "isActive":               true
 
   });
@@ -88,6 +91,10 @@ exports.get = async (req, res, next) => {
 
   if (req.query.currency) {
     query["financial.currency"] = req.query.currency;
+  }
+
+  if (req.query.exempt) {
+    query["financial.isExempt"] = req.query.exempt;
   }
 
   Stock.find(query)
