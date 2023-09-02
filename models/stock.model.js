@@ -38,6 +38,10 @@ var StockSchema = new mongoose.Schema({
       type:     String,
       required: true,
       trim:     true
+    },
+    isExempt: {
+      type: Boolean,
+      required: true
     }
   },
   isActive: {
