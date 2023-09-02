@@ -40,6 +40,14 @@ var DividendSchema = new mongoose.Schema({
     type:     Date,
     required: true
   },
+  payment_type: {
+    type: String,
+    required: true
+  },
+  isExempt: {
+    type: Boolean,
+    required: true
+  },
   owner: {
     type:     String,
     required: true,
