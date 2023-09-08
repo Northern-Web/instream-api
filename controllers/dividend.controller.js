@@ -1,4 +1,5 @@
-const { Dividend } = require("./../models/dividend.model");
+const { Dividend } = require('./../models/dividend.model');
+const { Stock }    = require('./../models/stock.model')
 const jwt          = require("jsonwebtoken");
 
 exports.create = async (req, res, next) => {
@@ -6,6 +7,9 @@ exports.create = async (req, res, next) => {
 
   const encoded_token = req.headers["x-access-token"];
   var decoded_token   = jwt.verify(encoded_token, process.env.JWT_SECRET);
+  
+  var stock = await Stock.findOne({'ticker': data.ticker});
+
 
   var dividend = new Dividend ({
     "ticker":            data.ticker,
@@ -17,6 +21,8 @@ exports.create = async (req, res, next) => {
     "frequency":         data.frequency,
     "share_price":       data.share_price,
     "payment_date":      data.payment_date,
+    "payment_type":      data.payment_type,
+    "isTaxExempt":       stock.financial.isTaxExempt,
     "owner":             decoded_token.id
   });
 
