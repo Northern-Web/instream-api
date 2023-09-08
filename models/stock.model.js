@@ -11,7 +11,7 @@ var StockSchema = new mongoose.Schema({
     type:     String,
     required: true,
     trim:     true,
-    dropDups: true
+    unique:   true
   },
   companyInfo: {
     industry: {
@@ -39,7 +39,7 @@ var StockSchema = new mongoose.Schema({
       required: true,
       trim:     true
     },
-    isExempt: {
+    isTaxExempt: {
       type: Boolean,
       required: true
     }
