@@ -44,7 +44,7 @@ var DividendSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  isExempt: {
+  isTaxExempt: {
     type: Boolean,
     required: true
   },
