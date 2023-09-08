@@ -1,31 +1,51 @@
 const { Stock } = require("./../models/stock.model");
 
 exports.create = async (req, res, next) => {
-  const data = req.body;
+  
+  try {
+    const data = req.body;
 
-  console.log(data.exempt);
-
-  var stock = new Stock ({
-    "name":                   data.name,
-    "ticker":                 data.ticker,
-    "companyInfo.industry":   data.industry,
-    "companyInfo.identifier": data.identifier,
-    "companyInfo.logo":       data.logo,
-    "companyInfo.website":    data.website,
-    "financial.currency":     data.currency,
-    "financial.isExempt":     (data.exempt == 'Yes' ? true : false),
-    "isActive":               true
-
-  });
-
-  stock.save().then(async () => {
-    return res.status(201).json({
-    "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
-    "code": 201,
-    "status": "Success",
-    "message": "Stock was successfully created."
+    var stock = new Stock ({
+      "name":                   data.name,
+      "ticker":                 data.ticker,
+      "companyInfo.industry":   data.industry,
+      "companyInfo.identifier": data.identifier,
+      "companyInfo.logo":       data.logo,
+      "companyInfo.website":    data.website,
+      "financial.currency":     data.currency,
+      "financial.isTaxExempt":  (data.exempt == true || data.exempt === 'true' ? true : false),
+      "isActive":               true
+  
     });
-  });
+
+    var existingStock = await Stock.findOne({'ticker': data.ticker});
+    if (existingStock){
+      return res.status(409).json({
+        "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
+        "code": 409,
+        "status": "Error",
+        "message": "Stock has already been created."
+        });
+    }
+  
+    stock.save().then(async () => {
+      return res.status(201).json({
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
+      "code": 201,
+      "status": "Success",
+      "message": "Stock was successfully created."
+      });
+    });
+
+  } catch(error) {
+    return res.status(500).json({
+      "api": `${process.env.APP_DESC} v.${process.env.APP_VER}`,
+      "code": 500,
+      "status": "Error",
+      "message": error.message
+      });
+  }
+
 };
 
 exports.delete = async (req, res, next) => {
@@ -93,8 +113,8 @@ exports.get = async (req, res, next) => {
     query["financial.currency"] = req.query.currency;
   }
 
-  if (req.query.exempt) {
-    query["financial.isExempt"] = req.query.exempt;
+  if (req.query.taxExempt) {
+    query["financial.isTaxExempt"] = req.query.taxExempt;
   }
 
   if (req.query.active) {
