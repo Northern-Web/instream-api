@@ -92,6 +92,18 @@ exports.find = async (req, res, next) => {
     query["currency"] = req.query.currency;
   }
 
+  if (req.query.id) {
+    query["_id"] = req.query.id;
+  }
+
+  if (req.query.isTaxExempt) {
+    query["isTaxExempt"] = req.query.isTaxExempt;
+  }
+
+  if (req.query.paymentType) {
+    query["payment_type"] = req.query.paymentType;
+  }
+
   if (req.query.year) {
     query["payment_date"] = {
       $gte: `${req.query.year}-01-01`,
